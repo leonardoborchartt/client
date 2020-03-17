@@ -1,3 +1,4 @@
+create database clients; 
  create table client (
 	  id bigint not null auto_increment,
       name varchar(255),
