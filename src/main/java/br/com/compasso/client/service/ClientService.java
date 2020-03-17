@@ -16,34 +16,34 @@ import br.com.compasso.client.repository.ClientRepository;
 public class ClientService {
 
 	@Autowired
-	private ClientRepository rep;
+	private ClientRepository clientRepository;
 
 	public List<ClientDTO> getUsers() {
-		return rep.findAll().stream().map(ClientDTO::create).collect(Collectors.toList());
+		return clientRepository.findAll().stream().map(ClientDTO::create).collect(Collectors.toList());
 	}
 
 	public Optional<ClientDTO> getUserById(Long id) {
-		return rep.findById(id).map(ClientDTO::create);
+		return clientRepository.findById(id).map(ClientDTO::create);
 	}
 
 	public List<Client> getUserByName(String name) {
-		return rep.findByName(name);
+		return clientRepository.findByName(name);
 		
 	}
 
 	public List<ClientDTO> name(String name) {
-		return rep.findByName(name).stream().map(ClientDTO::create).collect(Collectors.toList());
+		return clientRepository.findByName(name).stream().map(ClientDTO::create).collect(Collectors.toList());
 	}
 	
 	public ClientDTO insert(Client client) {
 		Assert.isNull(client.getId(), "não foi possivel atualizar o registro");
-		return ClientDTO.create(rep.save(client));
+		return ClientDTO.create(clientRepository.save(client));
 	}
 
 	public ClientDTO update(Client client, Long id) {
 		Assert.notNull(id, "Não foi possivel atualizar");
 
-		Optional<Client> optional = rep.findById(id);
+		Optional<Client> optional = clientRepository.findById(id);
 		if (optional.isPresent()) {
 			Client db = optional.get();
 			db.setName(client.getName());
@@ -52,7 +52,7 @@ public class ClientService {
 			db.setCity(client.getCity());
 
 			System.out.println("Client id " + db.getId());
-			rep.save(db);
+			clientRepository.save(db);
 			return ClientDTO.create(db);
 		} else {
 			throw new RuntimeException("Não foi possivel registro");
@@ -71,7 +71,7 @@ public class ClientService {
 
 	public boolean delete(Long id) {
 		if (getUserById(id).isPresent()) {
-			rep.deleteById(id);
+			clientRepository.deleteById(id);
 			return true;
 		}
 		return false;

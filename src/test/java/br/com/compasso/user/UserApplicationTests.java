@@ -24,8 +24,6 @@ class UserApplicationTests {
 	public void testeSave() {
 		Client client = new Client();
 		client.setName("joao");
-		client.setEmail("joao@hotmail.com");
-		client.setUsername("jo");
 		ClientDTO u = service.insert(client);
 		
 		assertNotNull(u);
@@ -37,9 +35,7 @@ class UserApplicationTests {
 		
 		u = op.get();
 		assertEquals("joao", u.getName());
-		assertEquals("joao@hotmail.com", u.getEmail());
-		assertEquals("jo", u.getUsername());
-		
+
 		//deleta o usuario
 		service.delete(id);
 		
