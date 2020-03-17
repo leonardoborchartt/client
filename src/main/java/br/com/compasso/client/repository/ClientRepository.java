@@ -1,8 +1,10 @@
-package br.com.compasso.client.domain;
+package br.com.compasso.client.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.compasso.client.domain.Client;
 
 
 public interface ClientRepository extends JpaRepository<Client, Long>{

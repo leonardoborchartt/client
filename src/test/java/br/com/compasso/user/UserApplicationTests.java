@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.compasso.client.domain.Client;
-import br.com.compasso.client.domain.ClientService;
 import br.com.compasso.client.domain.dto.ClientDTO;
+import br.com.compasso.client.service.ClientService;
 
 import static junit.framework.TestCase.*;
 

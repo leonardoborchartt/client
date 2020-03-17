@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.compasso.client.domain.Client;
-import br.com.compasso.client.domain.ClientService;
 import br.com.compasso.client.domain.dto.ClientDTO;
+import br.com.compasso.client.service.ClientService;
 
 @RestController
 @RequestMapping("/api/v1/clients")

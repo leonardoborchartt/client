@@ -1,4 +1,4 @@
-package br.com.compasso.client.domain;
+package br.com.compasso.client.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import br.com.compasso.client.domain.Client;
 import br.com.compasso.client.domain.dto.ClientDTO;
+import br.com.compasso.client.repository.ClientRepository;
 
 @Service
 public class ClientService {
