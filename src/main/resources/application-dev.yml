@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    initialization-mode: always
+    password: root
+    url: jdbc:mysql://localhost:3306/clients?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
