@@ -16,11 +16,7 @@ public class ClientDTO {
 	private String city;
 	private LocalDate birthday;
 	private int age;
-	
 
-	/*public ClientDTO create(Client user) {
-    this.id = user.getId();
-   }*/
 	
 	public static ClientDTO create(Client client) {
 		ModelMapper modelMapper = new ModelMapper();

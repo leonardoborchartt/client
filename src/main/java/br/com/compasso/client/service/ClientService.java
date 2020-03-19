@@ -50,23 +50,12 @@ public class ClientService {
 			db.setGender(client.getGender());
 			db.setBirthday(client.getBirthday());
 			db.setCity(client.getCity());
-
-			System.out.println("Client id " + db.getId());
 			clientRepository.save(db);
 			return ClientDTO.create(db);
 		} else {
 			throw new RuntimeException("Não foi possivel registro");
 		}
 
-//		getUserById(id).map(db-> {
-//			
-//			db.setNome(user.getNome());
-//			db.setEmail(user.getEmail());
-//			db.setLogin(user.getLogin());
-//			System.out.println("Client id " + db.getId());
-//			rep.save(db);
-//			return db
-//		}).orElseThrow((-> new RuntimeException("dasd")));
 	}
 
 	public boolean delete(Long id) {
