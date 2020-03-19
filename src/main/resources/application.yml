@@ -3,12 +3,7 @@ server:
 
 spring:
   datasource:
-    initialization-mode: always
-    #url: jdbc:mysql://localhost:3306/clients?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    #url: mysql://b8146d09585265:cd1ac726@us-cdbr-iron-east-04.cleardb.net/heroku_aa6f85018e2bedb?reconnect=true
-    tomcat:
-      url: mysql://b8146d09585265:cd1ac726@us-cdbr-iron-east-04.cleardb.net/heroku_aa6f85018e2bedb?reconnect=true
-
+    url: mysql://b8146d09585265:cd1ac726@us-cdbr-iron-east-04.cleardb.net/heroku_aa6f85018e2bedb?reconnect=true
   jpa:
     hibernate:
       ddl-auto: none
@@ -28,3 +23,4 @@ logging:
         SQL: debug
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+
