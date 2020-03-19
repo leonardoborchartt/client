@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import org.modelmapper.ModelMapper;
 
-import br.com.compasso.client.domain.Client;
+import br.com.compasso.client.domain.model.Client;
 import lombok.Data;
 
 @Data

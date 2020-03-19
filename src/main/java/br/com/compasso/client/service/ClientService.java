@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import br.com.compasso.client.domain.Client;
+import br.com.compasso.client.domain.model.Client;
 import br.com.compasso.client.domain.dto.ClientDTO;
 import br.com.compasso.client.repository.ClientRepository;
 

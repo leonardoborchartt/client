@@ -1,4 +1,4 @@
-package br.com.compasso.client.domain;
+package br.com.compasso.client.domain.model;
 
 
 
