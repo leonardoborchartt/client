@@ -3,7 +3,7 @@ spring:
     url: mysql://b8146d09585265:cd1ac726@us-cdbr-iron-east-04.cleardb.net/heroku_aa6f85018e2bedb?reconnect=true
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:

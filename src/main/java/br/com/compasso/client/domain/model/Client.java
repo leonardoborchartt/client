@@ -5,12 +5,13 @@ package br.com.compasso.client.domain.model;
 import java.time.LocalDate;
 import java.time.Period;
 
+import javax.persistence.Table;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 import lombok.Data;
 
-
+@Table(name = "client")
 @Entity
 @Data
 public class Client {
