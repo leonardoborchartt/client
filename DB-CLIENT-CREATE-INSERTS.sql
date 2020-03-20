@@ -15,5 +15,5 @@ insert into client(name,gender,birthday,city) values ('Joana Silva','M', '2001-1
 insert into client(name,gender,birthday,city) values ('Fernando Alcantara','M', '1990-08-10','Porto Alegre');
 insert into client(name,gender,birthday,city) values ('Carlos Silveira','M', '1990-10-05','Alegrete');
 
- 
-  select * from client;
+
+select * from client;
