@@ -15,7 +15,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Client {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String name;
 	@Pattern(regexp = "^[M|F]{1}$", message ="Must be M or F")
