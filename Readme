@@ -1,2 +1,5 @@
-Banco de dados MySQL
-Os comandos para criação do banco e tabelas contam no arquivo "DB-CLIENT-CREATE-INSERTS.sql"
+O Banco de dados usado no projeto é o MySQL, as configurações estão no aplication.yml
+-mysql://localhost:3306/
+
+Os comandos para criação do banco e tabelas constam no arquivo "DB-CLIENT-CREATE-INSERTS.sql" e descritos também abaixo:
+

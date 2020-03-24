@@ -67,15 +67,9 @@ public class ClientsController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity put(@PathVariable("id") Long id, @RequestBody Client client) {
-//		try {
 		client.setId(id);
 		ClientDTO u = service.update(client, id);
 		return u != null ? ResponseEntity.ok(u) : ResponseEntity.notFound().build();
-
-//		} catch (Exception e) {
-//			 return ResponseEntity.badRequest().build();
-//		}
-
 	}
 
 	@DeleteMapping("/{id}")
