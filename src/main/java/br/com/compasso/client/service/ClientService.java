@@ -3,14 +3,15 @@ package br.com.compasso.client.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+import br.com.compasso.client.repository.ClientRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-
 import br.com.compasso.client.domain.model.Client;
 import br.com.compasso.client.domain.dto.ClientDTO;
-import br.com.compasso.client.repository.ClientRepository;
+
 
 @Service
 public class ClientService {
@@ -24,11 +25,6 @@ public class ClientService {
 
 	public Optional<ClientDTO> getUserById(Long id) {
 		return clientRepository.findById(id).map(ClientDTO::create);
-	}
-
-	public List<Client> getUserByName(String name) {
-		return clientRepository.findByName(name);
-		
 	}
 
 	public List<ClientDTO> name(String name) {
@@ -67,4 +63,20 @@ public class ClientService {
 	}
 
 
+	public ClientDTO changeClientName(Long id, String name) throws JsonProcessingException {
+
+		ObjectMapper mapper= new ObjectMapper();
+		ClientDTO mp = mapper.readValue(name, ClientDTO.class);
+
+
+
+		Optional<Client> optionalClient = clientRepository.findById(id);
+		if(optionalClient.isPresent()){
+		Client client = optionalClient.get();
+		client.setName(mp.getName());
+		clientRepository.save(client);
+		return ClientDTO.create(client);
+		}
+		return ClientDTO.create(null);
+	}
 }

@@ -2,12 +2,16 @@ package br.com.compasso.client.domain.dto;
 
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
 import br.com.compasso.client.domain.model.Client;
 import lombok.Data;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClientDTO {
 
 	private Long id;
@@ -17,7 +21,7 @@ public class ClientDTO {
 	private LocalDate birthday;
 	private int age;
 
-	
+
 	public static ClientDTO create(Client client) {
 		ModelMapper modelMapper = new ModelMapper();
 		return modelMapper.map(client, ClientDTO.class);

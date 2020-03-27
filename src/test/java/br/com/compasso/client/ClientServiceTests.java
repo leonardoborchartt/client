@@ -1,10 +1,8 @@
-package br.com.compasso.user;
+package br.com.compasso.client;
 
-import br.com.compasso.client.ClientApplication;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.compasso.client.domain.model.Client;
@@ -20,15 +18,18 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ClientApplication.class)
-class UserServiceTests {
+class ClientServiceTests {
 
 	@Autowired
 	private ClientService clientService;
 	
 	@Test
 	public void testeSave() {
+
+
+
 		Client client = new Client();
-		client.setName("joao");
+		client.setName("Leonardo Borchartt");
 		client.setBirthday(LocalDate.of(2016, 9, 23));
 		client.setGender("M");
 		client.setCity("Floripa");
@@ -41,9 +42,13 @@ class UserServiceTests {
 		assertTrue(op.isPresent());
 		
 		u = op.get();
-		assertEquals("joao", u.getName());
+		assertEquals("Leonardo Borchartt", u.getName());
+		assertEquals(LocalDate.of(2016, 9, 22), u.getBirthday());
+		assertEquals("M", u.getGender());
+		assertEquals("Floripa", u.getCity());
 
-		clientService.delete(id);
+
+		clientService.delete(u.getId());
 		assertFalse(clientService.getUserById(id).isPresent());
 		
 	}
