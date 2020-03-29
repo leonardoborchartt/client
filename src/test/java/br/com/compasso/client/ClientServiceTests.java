@@ -26,8 +26,8 @@ public class ClientServiceTests {
 
 	@Test
 	public void testaRetornoNomeCliente() {
-		String name = "leo";
-		Client client = new Client(1L, "leo" , "M", "Floripa", LocalDate.of(1933,9,10));
+		String name = "Leonardo";
+		Client client = new Client(1L, "Leonardo" , "M", "Floripa", LocalDate.of(1993,9,10));
 		List<Client> list = new ArrayList<>();
 		list.add(client.toClient());
 
@@ -37,6 +37,22 @@ public class ClientServiceTests {
 		Assertions.assertThat(clientService.name(name)).hasSize(1);
 		Assertions.assertThat(clientService.name(name).get(0).getName()).isEqualTo(name);
 	}
+	@Test
+	public void testaRetornoDataNascimentoCliente() {
+		String dataNascimento = "1993-09-10";
+		Client client = new Client(1L, "Leonardo" , "M", "Floripa", LocalDate.of(1993,9,10));
+		List<Client> list = new ArrayList<>();
+		list.add(client.toClient());
+
+		when(clientRepository.findByName(dataNascimento)).
+				thenReturn(list);
+
+		Assertions.assertThat(clientService.name(dataNascimento)).hasSize(1);
+		Assertions.assertThat(clientService.name(dataNascimento).get(0).getBirthday()).isEqualTo(dataNascimento);
+		Assertions.assertThat(clientService.name(dataNascimento).get(0).getAge()).isEqualTo(26);
+
+	}
+
 
 
 
