@@ -1,4 +1,4 @@
-package br.com.compasso.client.config;
+package br.com.compasso.client.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

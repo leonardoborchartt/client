@@ -3,6 +3,8 @@ package br.com.compasso.client.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import br.com.compasso.client.domain.dto.ClientRespostaDto;
 import br.com.compasso.client.repository.ClientRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,40 +21,25 @@ public class ClientService {
 	@Autowired
 	private ClientRepository clientRepository;
 
-	public List<ClientDTO> getUsers() {
-		return clientRepository.findAll().stream().map(ClientDTO::create).collect(Collectors.toList());
+	public List<Client> getUsers() {
+		return clientRepository.findAll().stream().map(Client::toClient).collect(Collectors.toList());
 	}
 
-	public Optional<ClientDTO> getUserById(Long id) {
-		return clientRepository.findById(id).map(ClientDTO::create);
+	public Optional<Client> getUserById(Long id) {
+		return clientRepository.findById(id);
 	}
 
-	public List<ClientDTO> name(String name) {
-		return clientRepository.findByName(name).stream().map(ClientDTO::create).collect(Collectors.toList());
+	public List<Client> name(String name) {
+		return clientRepository.findByName(name);
 	}
 	
-	public ClientDTO insert(Client client) {
+	public ClientRespostaDto insert(Client client) {
 		Assert.isNull(client.getId(), "não foi possivel atualizar o registro");
-		return ClientDTO.create(clientRepository.save(client));
+		Client city = client.toClient();
+		Client savedCity = clientRepository.save(city);
+		return savedCity.toResponseDto();
 	}
 
-	public ClientDTO update(Client client, Long id) {
-		Assert.notNull(id, "Não foi possivel atualizar");
-
-		Optional<Client> optional = clientRepository.findById(id);
-		if (optional.isPresent()) {
-			Client db = optional.get();
-			db.setName(client.getName());
-			db.setGender(client.getGender());
-			db.setBirthday(client.getBirthday());
-			db.setCity(client.getCity());
-			clientRepository.save(db);
-			return ClientDTO.create(db);
-		} else {
-			throw new RuntimeException("Não foi possivel registro");
-		}
-
-	}
 
 	public boolean delete(Long id) {
 		if (getUserById(id).isPresent()) {
@@ -63,20 +50,17 @@ public class ClientService {
 	}
 
 
-	public ClientDTO changeClientName(Long id, String name) throws JsonProcessingException {
+	public Client changeClientName(Long id, String name) throws Exception {
 
 		ObjectMapper mapper= new ObjectMapper();
 		ClientDTO mp = mapper.readValue(name, ClientDTO.class);
 
-
-
 		Optional<Client> optionalClient = clientRepository.findById(id);
-		if(optionalClient.isPresent()){
+		if (!optionalClient.isPresent()) throw new Exception();
 		Client client = optionalClient.get();
 		client.setName(mp.getName());
-		clientRepository.save(client);
-		return ClientDTO.create(client);
-		}
-		return ClientDTO.create(null);
+			Client savedCity = clientRepository.save(client);
+		return savedCity.toClient();
+
 	}
 }

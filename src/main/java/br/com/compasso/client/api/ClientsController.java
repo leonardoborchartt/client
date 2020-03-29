@@ -32,24 +32,24 @@ public class ClientsController {
 	private ClientService clientService;
 
 	@GetMapping()
-	public ResponseEntity<List<ClientDTO>> get() {
+	public ResponseEntity<List<Client>> get() {
 
 		return ResponseEntity.ok(clientService.getUsers());
 	}
 
 
 	@GetMapping("/name")
-	public ResponseEntity<List<ClientDTO>> search(@RequestParam("name") String name) {
-		List<ClientDTO> clients = clientService.name(name);
+	public ResponseEntity<List<Client>> search(@RequestParam("name") String name) {
+		List<Client> clients = clientService.name(name);
 		return clients.isEmpty() ?
 				ResponseEntity.noContent().build() :
 				ResponseEntity.ok(clients);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ClientDTO> getId(@PathVariable("id") Long id) {
-		Optional<ClientDTO> client = clientService.getUserById(id);
-		return client.isPresent() ? 
+	public ResponseEntity<Client> getId(@PathVariable("id") Long id) {
+		Optional<Client> client = clientService.getUserById(id);
+		return client.isPresent() ?
 				ResponseEntity.ok(client.get()) :
 				ResponseEntity.notFound().build();
 
@@ -70,15 +70,14 @@ public class ClientsController {
 
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ClientDTO> changeClientName(@PathVariable Long id, @RequestBody String name) throws JsonProcessingException {
+	public ResponseEntity<Client> changeClientName(@PathVariable Long id, @RequestBody String name) throws Exception {
 		if (name.isEmpty()) return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
-		ClientDTO clientDTO = clientService.changeClientName(id, name);
-		return new ResponseEntity<>(clientDTO, HttpStatus.OK);
+		Client client = clientService.changeClientName(id, name);
+		return new ResponseEntity<>(client, HttpStatus.OK);
 	}
 
-
 	@DeleteMapping("/{id}")
-	public ResponseEntity delete(@PathVariable("id") Long id) {
+	public ResponseEntity<Client> delete(@PathVariable("id") Long id) {
 		boolean ok = clientService.delete(id);
 		return ok ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
 	}

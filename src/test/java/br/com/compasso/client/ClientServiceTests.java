@@ -1,72 +1,43 @@
 package br.com.compasso.client;
-
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import br.com.compasso.client.domain.model.Client;
-import br.com.compasso.client.domain.dto.ClientDTO;
+import br.com.compasso.client.repository.ClientRepository;
+import org.assertj.core.api.Assertions;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import br.com.compasso.client.service.ClientService;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import static junit.framework.TestCase.*;
-
+import static org.mockito.Mockito.when;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ClientApplication.class)
-class ClientServiceTests {
+@RunWith(MockitoJUnitRunner.class)
+public class ClientServiceTests {
 
-	@Autowired
+
+	@Mock
+	private ClientRepository clientRepository;
+
+	@InjectMocks
 	private ClientService clientService;
-	
-	@Test
-	public void testeSave() {
-
-
-
-		Client client = new Client();
-		client.setName("Leonardo Borchartt");
-		client.setBirthday(LocalDate.of(2016, 9, 23));
-		client.setGender("M");
-		client.setCity("Floripa");
-		ClientDTO u = clientService.insert(client);
-		
-		assertNotNull(u);
-		Long id = u.getId();
-		assertNotNull(id);
-		Optional<ClientDTO> op = clientService.getUserById(id);
-		assertTrue(op.isPresent());
-		
-		u = op.get();
-		assertEquals("Leonardo Borchartt", u.getName());
-		assertEquals(LocalDate.of(2016, 9, 22), u.getBirthday());
-		assertEquals("M", u.getGender());
-		assertEquals("Floripa", u.getCity());
-
-
-		clientService.delete(u.getId());
-		assertFalse(clientService.getUserById(id).isPresent());
-		
-	}
-	
-	@Test
-	public void testLista() {
-		List<ClientDTO> users = clientService.getUsers();
-		assertEquals(6, users.size());
-	}
 
 
 	@Test
-	public void testGet() {
-		Optional<ClientDTO> op = clientService.getUserById(3L);
-		assertTrue(op.isPresent());
-		ClientDTO c = op.get();
-		assertEquals("João Silva", c.getName());
+	public void testaRetornoNomeCliente() {
+		String name = "leo";
+		Client client = new Client(1L, "leo" , "M", "Floripa", LocalDate.of(1933,9,10));
+		List<Client> list = new ArrayList<>();
+		list.add(client.toClient());
+
+		when(clientRepository.findByName(name)).
+				thenReturn(list);
+
+		Assertions.assertThat(clientService.name(name)).hasSize(1);
+		Assertions.assertThat(clientService.name(name).get(0).getName()).isEqualTo(name);
 	}
+
 
 
 }
