@@ -1,12 +1,14 @@
-package br.com.compasso.client.domain.model;
+package br.com.compasso.client.model;
 
 import java.time.LocalDate;
 import java.time.Period;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import br.com.compasso.client.domain.dto.ClientRespostaDto;
+import br.com.compasso.client.dto.ClientRespostaDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class Client{
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@NotNull
+	@NotBlank
 	private String name;
 	@NotNull
 	@Pattern(regexp = "^[M|F]{1}$", message ="Must be M or F")

@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import br.com.compasso.client.domain.dto.ClientRespostaDto;
+import br.com.compasso.client.dto.ClientRespostaDto;
 import br.com.compasso.client.repository.ClientRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import br.com.compasso.client.domain.model.Client;
-import br.com.compasso.client.domain.dto.ClientDTO;
+import br.com.compasso.client.model.Client;
+import br.com.compasso.client.dto.ClientDTO;
 
 
 @Service

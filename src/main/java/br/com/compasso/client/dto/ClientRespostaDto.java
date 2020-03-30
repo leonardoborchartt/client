@@ -1,6 +1,5 @@
-package br.com.compasso.client.domain.dto;
+package br.com.compasso.client.dto;
 
-import br.com.compasso.client.domain.model.Client;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

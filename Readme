@@ -1,6 +1,8 @@
-Versão do banco de dados MySQL usado no projeto:
-mysqld.exe  Ver 8.0.19 for Win64 on x86_64 (MySQL Community Server - GPL)
+Prerequisitos de softwares para rodar a aplicação:
 
+MySQL Ver 8.0.19
+Apache Maven 3.6.3
+Java version "9.0.1"
 
 Os comandos para criação do banco e tabelas são descritos também abaixo:
 

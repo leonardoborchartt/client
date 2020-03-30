@@ -1,6 +1,5 @@
 package br.com.compasso.client;
-import br.com.compasso.client.domain.dto.ClientRespostaDto;
-import br.com.compasso.client.domain.model.Client;
+import br.com.compasso.client.model.Client;
 import br.com.compasso.client.repository.ClientRepository;
 
 import org.assertj.core.api.Assertions;

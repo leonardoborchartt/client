@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.compasso.client.domain.model.Client;
+import br.com.compasso.client.model.Client;
 import br.com.compasso.client.service.ClientService;
 
 import javax.validation.Valid;
@@ -55,9 +55,9 @@ public class ClientsController {
 
 	@PostMapping
 	public ResponseEntity<Client> post(@Valid @RequestBody Client client) {
-			clientService.insert(client);
-			URI location = getUri(client.getId());
-			return ResponseEntity.created(location).body(client);
+		clientService.insert(client);
+		URI location = getUri(client.getId());
+		return ResponseEntity.created(location).body(client);
 
 
 	}
@@ -68,10 +68,17 @@ public class ClientsController {
 
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Client> changeClientName(@PathVariable Long id, @RequestBody String name) throws Exception {
-		if (name.isEmpty()) return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Client> changeClientName(@Valid @PathVariable Long id, @RequestBody String name) throws Exception {
+		try {
+			if (name.isEmpty()|| !(clientService.getUserById(id).isPresent()))
+				return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Client client = clientService.changeClientName(id, name);
 		return new ResponseEntity<>(client, HttpStatus.OK);
+
+
 	}
 
 	@DeleteMapping("/{id}")

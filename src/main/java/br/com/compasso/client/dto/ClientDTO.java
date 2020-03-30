@@ -1,11 +1,10 @@
-package br.com.compasso.client.domain.dto;
+package br.com.compasso.client.dto;
 
 import java.time.LocalDate;
 
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import br.com.compasso.client.domain.model.Client;
 import lombok.Data;
 
 @Data
