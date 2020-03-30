@@ -1,6 +1,8 @@
 package br.com.compasso.client;
+import br.com.compasso.client.domain.dto.ClientRespostaDto;
 import br.com.compasso.client.domain.model.Client;
 import br.com.compasso.client.repository.ClientRepository;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import br.com.compasso.client.service.ClientService;
 import static org.mockito.Mockito.when;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,7 @@ public class ClientServiceTests {
 
 	@Test
 	public void testaRetornoNomeCliente() {
+
 		String name = "Leonardo";
 		Client client = new Client(1L, "Leonardo" , "M", "Floripa", LocalDate.of(1993,9,10));
 		List<Client> list = new ArrayList<>();

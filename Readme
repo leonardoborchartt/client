@@ -1,5 +1,33 @@
-O Banco de dados usado no projeto é o MySQL, as configurações estão no aplication.yml
--mysql://localhost:3306/
+Versão do banco de dados MySQL usado no projeto:
+mysqld.exe  Ver 8.0.19 for Win64 on x86_64 (MySQL Community Server - GPL)
 
-Os comandos para criação do banco e tabelas constam no arquivo "DB-CLIENT-CREATE-INSERTS.sql" e descritos também abaixo:
 
+Os comandos para criação do banco e tabelas são descritos também abaixo:
+
+-> Para criação do bd para o microservico Clientes:
+
+create database clients;
+use clients;
+create table client (
+      id bigint not null auto_increment,
+      name varchar(255),
+      gender varchar(255),
+      birthday varchar(255),
+      city varchar(255),
+      primary key (id)
+);
+
+
+/---------------------------------------------/
+
+
+-> Para criação do bd para o microservico Cidades:
+
+create database city;
+use city;
+create table cities (
+	id int not null auto_increment,
+	name varchar(255),
+	state varchar(255),
+	primary key (id)
+  );

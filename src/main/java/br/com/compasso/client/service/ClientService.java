@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import br.com.compasso.client.domain.dto.ClientRespostaDto;
 import br.com.compasso.client.repository.ClientRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

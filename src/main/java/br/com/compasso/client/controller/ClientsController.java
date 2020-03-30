@@ -1,10 +1,9 @@
-package br.com.compasso.client.api;
+package br.com.compasso.client.controller;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.compasso.client.domain.model.Client;
-import br.com.compasso.client.domain.dto.ClientDTO;
 import br.com.compasso.client.service.ClientService;
 
 import javax.validation.Valid;
