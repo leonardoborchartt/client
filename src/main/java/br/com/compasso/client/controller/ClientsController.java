@@ -29,12 +29,6 @@ public class ClientsController {
 	@Autowired
 	private ClientService clientService;
 
-	@GetMapping()
-	public ResponseEntity<List<Client>> get() {
-
-		return ResponseEntity.ok(clientService.getUsers());
-	}
-
 
 	@GetMapping("/name")
 	public ResponseEntity<List<Client>> search(@RequestParam("name") String name) {

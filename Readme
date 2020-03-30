@@ -4,6 +4,7 @@ MySQL Ver 8.0.19
 Apache Maven 3.6.3
 Java version "9.0.1"
 
+Crie as databases e tabelas antes de rodar a aplicação.
 Os comandos para criação do banco e tabelas são descritos também abaixo:
 
 -> Para criação do bd para o microservico Clientes:
